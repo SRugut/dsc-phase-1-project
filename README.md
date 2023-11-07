@@ -1,22 +1,22 @@
-# Phase 1 Project
-
-You've made it all the way through the first phase of this course - take a minute to celebrate your awesomeness!
-
-![awesome](https://raw.githubusercontent.com/learn-co-curriculum/dsc-phase-1-project/master/awesome.gif)
-
-Now you will put your new skills to use with a large end-of-Phase project! This project should take 20 to 30 hours to complete.
+# Microsoft Movie Studio Analysis
+Author: Silah Rugut
 
 ## Project Overview
-
-For this project, you will use exploratory data analysis to generate insights for a business stakeholder.
+This Project analyzes 2553 movies from IMDb, The Movie Database and Box Office Mojo produced between year 2000 and 2019.
 
 ### Business Problem
+Microsoft is considering venturing into the movie industry as all the big companies are already creating original video content. It intends to create a successful movie studio and it's major problem is the lack of knowledge in this field. It wants to understand the current trends in the film industry and make informed decisions on the types of movies to create for maximum success.
 
-Microsoft sees all the big companies creating original video content and they want to get in on the fun. They have decided to create a new movie studio, but they don’t know anything about creating movies. You are charged with exploring what types of films are currently doing the best at the box office. You must then translate those findings into actionable insights that the head of Microsoft's new movie studio can use to help decide what type of films to create.
+To help Microsoft solve the problem I will consider:
+  The number of movies being made per genre
+  The most profitable movie genres.
+  The trend of movie production over the years
+  The relationship between production budget and profits
+  The relationship between average rating and profitability
 
-### The Data
+### Data Sources
 
-In the folder `zippedData` are movie datasets from:
+The data used in this analysis is from the below websites:
 
 * [Box Office Mojo](https://www.boxofficemojo.com/)
 * [IMDB](https://www.imdb.com/)
@@ -24,42 +24,56 @@ In the folder `zippedData` are movie datasets from:
 * [TheMovieDB](https://www.themoviedb.org/)
 * [The Numbers](https://www.the-numbers.com/)
 
-It is up to you to decide what data from this to use and how to use it. If you want to make this more challenging, you can scrape websites or make API calls to get additional data. If you are feeling overwhelmed or behind (e.g. struggled with the Phase 1 Code Challenge), we recommend you use only the following data files:
+The specific files considered for analysis are: 
 
-* imdb.title.basics
-* imdb.title.ratings
-* bom.movie_gross
+* imdb.title.basics.csv.gz
+* imdb.title.ratings.csv.gz
+* tn_movie_budgets.csv.gz
 
-## Deliverables
+The above files were specifically selected because of the availability of movie titles and genres, average ratings and movie budgets and gross revenue which are important components that will help me in answering the business problem questions
 
-There are three deliverables for this project:
+## Data Preparation
+To prepare for analysis, I merged the above three csv files into one master dataframe using the movie title as the unique key and conducted inner joins.
 
-* A **GitHub repository**
-* A **Jupyter Notebook**
-* A **non-technical presentation**
+After combining the three CSV files, i dropped the columns that i felt would not be important for our data analysis. These are:
+ * 'original_title', 'runtime_minutes', 'numvotes after merging the two imbd datasets.
+ * id and tconstruct
 
-Review the "Project Submission & Review" page in the "Milestones Instructions" topic for instructions on creating and submitting your deliverables. Refer to the rubric associated with this assignment for specifications describing high-quality deliverables.
+I converted the production budget, domestic gross and worldwide gross to numeric values and used them to generated the domestic and wordwide profits columns
 
-### Key Points
+Thereafter I divided the production budget column and the two profit columns by 1 million to increase readabilty and ease of analysis.
 
-* **Your analysis should yield three concrete business recommendations.** The ultimate purpose of exploratory analysis is not just to learn about the data, but to help an organization perform better. Explicitly relate your findings to business needs by recommending actions that you think the business (Microsoft) should take.
+Afterwards, i dropped the columns that were no longer useful going into analysis.
 
-* **Communicating about your work well is extremely important.** Your ability to provide value to an organization - or to land a job there - is directly reliant on your ability to communicate with them about what you have done and why it is valuable. Create a storyline your audience (the head of Microsoft's new movie studio) can follow by walking them through the steps of your process, highlighting the most important points and skipping over the rest.
 
-* **Use plenty of visualizations.** Visualizations are invaluable for exploring your data and making your findings accessible to a non-technical audience. Spotlight visuals in your presentation, but only ones that relate directly to your recommendations. Simple visuals are usually best (e.g. bar charts and line graphs), and don't forget to format them well (e.g. labels, titles).
+### Data Analysis
 
-## Getting Started
+Data Analysis took various methods including descriptive analysis, trend analysis and correlation analysis.
 
-Please start by reviewing this assignment, the rubric at the bottom of it, and the "Project Submission & Review" page. If you have any questions, please ask your instructor ASAP.
+From my combined dataframe I selected the worlwide gross profits as my main profits column for analysis since it incorporates both domestic and international profits. That is why I did not use domestic gross profits for any analysis
 
-Next, we recommend you check out [the Phase 1 Project Templates and Examples repo](https://github.com/learn-co-curriculum/dsc-project-template) and use the MVP template for your project.
+## Results
 
-Alternatively, you can fork [the Phase 1 Project Repository](https://github.com/learn-co-curriculum/dsc-phase-1-project), clone it locally, and work in the `student.ipynb` file. Make sure to also add and commit a PDF of your presentation to your repository with a file name of `presentation.pdf`.
+The stated business problem presented by Microsoft is establishing their own movie studio to compete within the movie market, and needing to know what kind of movies will be the most successful.
 
-## Project Submission and Review
+The analysis of movies from the year 2000 to 2018 shows the following:
+ * Number of Movies produced have been declining over time.
+ * The correlation between production budget and profits have been positive. There was a negative correlation between production budget and profits between the year 2000 and 2007. Since then, there has been a positive correlation
+ * The most profitable genres on average are Action, Adventure, Sci-fi. Adventure, Animation, Comedy all averaging more than 20 billion dollars.
+ 
+## Conclusion & Recommendation
 
-Review the "Project Submission & Review" page in the "Milestones Instructions" topic to learn how to submit your project and how it will be reviewed. Your project must pass review for you to progress to the next Phase.
+This analysis leads to three recommendations of what movies to produce for Microsoft's new Movie studio.
 
-## Summary
+ * To start by producing Action, Adventure, SCi-Fi and Adventure, Animation and Comedy movies to assured sustained profits across the globe. These genres have demonstrated success over 18 years.
+ * The profits generated by movie producing companies over the 18 years have been on a steady growth. This means that the movie producing business is a business that is worth the investment
+ * The number of movies produced have been declining over time. This means that the movie producing companies have started diversifying to movie streaming sites and therefore Microsoft will have to include a movie streaming website in their budget.
 
-This project will give you a valuable opportunity to develop your data science skills using real-world data. The end-of-phase projects are a critical part of the program because they give you a chance to bring together all the skills you've learned, apply them to realistic projects for a business stakeholder, practice communication skills, and get feedback to help you improve. You've got this!
+## The Next Steps
+
+Further analysis could yield additional insights that would better inform Microsoft in their decision making:
+
+Analyze streaming data - The dataset used in this analysis was from the tradition theatre released movies and therefore there is need to analyze data on profits and ratings from streaming websites to better inform the investment decision
+Movies like Black Panther hit the top charts in the year 2018 as it appealed to a certain demographic. So there is need to study which demographic in terms of gender, race, and language a certain genre appeal to. So Microsoft can tailor its studio to production of movies appealing to diverse groups of people
+Analyze the most recent data from the year 2019 to 2023. This can bring alot of insight on the trend of movie production revenue given that there was Covid-19 pandemic that likely influenced production of movies and also the consumer behavior.
+
